@@ -41,7 +41,7 @@ const Login = () => {
               <img src={Img} alt='' className='logo' />
               <form onSubmit={functAutenticacion}>
                 <input type='text' placeholder='Ingresar Email' id='email' className='input-group mb-3 input' />
-                <input type='password' placeholder='Ingresar Password' id='password' className='input-group mb-3 input' />
+                <input type="password" placeholder="Ingresar Password" id="password" className="input-group mb-3 input" autoComplete="current-password" />
                 <button className='btn btn-outline-dark'onClick={registrar ? 'Registrate' : 'Inicia Sesion'}>{registrar ? 'Registrate' : 'Inicia Sesion'}</button>
               </form>
               <h4 className='registro'>
