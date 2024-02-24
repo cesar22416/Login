@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    pad: 0 auto;
+}
+.container{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+}
+.size-Img{
+    width: 500px;
+    height:450px;
+}
+
+
+.logo{
+    width: 200px ;
+    height: 200px;
+    display: flex;
+    
+}
+
+
+.col-md-4{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+.input{
+    border: none;
+    width: 320px;
+    height: 50px;
+}
+.cartwo{
+   
+    width: 700px;
+}
+
+.carttree{
+ display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+
+.tamñoImg{
+    width: 200px;
+}
