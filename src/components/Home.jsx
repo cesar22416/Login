@@ -73,7 +73,7 @@ export const Home = () => {
           <div className='HomeFallowers'>
             <Fallower text={"Followers"} icono={<span className="material-symbols-outlined">person_add</span>}/>
             <Fallower text={"Like"} icono={<span className="material-symbols-outlined">favorite</span>}/>
-            <Fallower text={"Followed"} icono={<span className="material-symbols-outlined">groups</span>}/>
+            <Fallower text={"Followed"} icono={<p className="material-symbols-outlined">groups</p>}/>
           </div>
           
         
