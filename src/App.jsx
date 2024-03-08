@@ -1,35 +1,42 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from '../src/components/Login';
+import Home from '../src/components/Home';
+import './App.css';
+import appFirebase from './fact';
+import Exchange from './components/exchange/Exchange';
+import Welcome from './components/fondoBase/Welcome';
+import Galleri from './components/Galeri/Galleri'
 
-import appFirebase from './fact'
-import {getAuth, onAuthStateChanged}from 'firebase/auth'
-const auth = getAuth(appFirebase)
-
-import Login from '../src/components/Login'
-import Home from '../src/components/Home'
-
-
-import './App.css'
+const auth = getAuth(appFirebase);
 
 function App() {
-  const [usuario, setUsuario] = useState(null)
+  const [usuario, setUsuario] = useState(null);
 
-onAuthStateChanged(auth, (usuarioFirebase)=>{
-  if (usuarioFirebase){
-    setUsuario(usuarioFirebase)
-  }
-  else{
-    setUsuario(null)
-  }
-})
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (usuarioFirebase) => {
+      if (usuarioFirebase) {
+        setUsuario(usuarioFirebase);
+      } else {
+        setUsuario(null);
+      }
+    });
 
+    return () => unsubscribe();
+  }, []);
 
   return (
-   
-      <div>
-        {usuario ? <Home correoUsuario = {usuario.email}/> : <Login/>}
-      </div>
-  
-  )
+    <Router>
+      <Routes>
+        
+        <Route path='*' element={<Welcome/>} />
+        <Route path="/Login" element={usuario ? <Home correoUsuario={usuario.email} /> : <Login />} />
+        <Route path="/Exchange" element={<Exchange />} />
+        <Route path="/Galleri" element={<Galleri/>} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
