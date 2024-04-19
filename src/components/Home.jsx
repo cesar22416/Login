@@ -8,7 +8,8 @@ import { NavBar } from './menu/NavBar';
 import LogoutButton from '../components/Close'
 import Fallower from './Fallower/Fallower';
 const auth = getAuth(appFirebase);
-
+import AvatarComponent from './Avatar/avatar'
+import  Name  from './name/Name';
 
 export const Home = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -49,32 +50,32 @@ export const Home = () => {
   };
 
   return (
-      <div className="container Fondo">
-        <div className='encabezado'>
-          <LogoutButton/>
-          <h5 className="card-title"> {currentUser ? currentUser.email : 'Invitado'}</h5> 
-          {newImage ? (
-            <img src={newImage} alt='' className='avatar' />
-          ) : (
-            <img src={Perf} alt='' className='avatar' />
-          )}
-          <button className="btn btn-outline-danger" onClick={openFileUpload} style={{ display: newImage ? 'none' : 'block' }}>+</button>
-          <input id="fileInput" type="file" onChange={handleFileChange} style={{ display: 'none' }} />
-        </div>
-
+    <div className='Fondo'>
+      <div className='encabezado'>
+    <div className='previ fluido'>
+            <AvatarComponent/>
+            <Name text={"Cesar Montilla"} />
+             <Name Correo={"@cesamontilla"}/>
+            
+    </div>        
+    <div className='fallower fluido'>
+      <Fallower text={"Publicaciones"} cantidad={"15"}/>
+            <Fallower text={"Seguidores"} cantidad={"5"}/>
+            <Fallower text={"Seguidos"} cantidad={"2"} />
+    </div>
+    </div>        
+     
         <div className="HomeUpFollower">
           <h5 className="card-title">Bienvenido {currentUser ? currentUser.email : 'Invitado'}</h5>
           <Link className='btn btn-outline-danger' to='/Exchange'>Buscar amigo</Link>
         </div>
-        
+
+        <div className='HomeText'>
           <p className="card-text">This is a wider card with supporting text below as <br/> natural
             lead-in to additional content. <br/>This content is a little bit longer.</p>
           <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
-          <div className='HomeFallowers'>
-            <Fallower text={"Followers"} icono={<span className="material-symbols-outlined">person_add</span>}/>
-            <Fallower text={"Like"} icono={<span className="material-symbols-outlined">favorite</span>}/>
-            <Fallower text={"Followed"} icono={<p className="material-symbols-outlined">groups</p>}/>
           </div>
+          
           
         
         <NavBar/>

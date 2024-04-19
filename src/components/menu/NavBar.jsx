@@ -5,31 +5,30 @@ export const NavBar = () => {
   return (
   
     <div className='NavbarContainer'>
-      <Link to='Home'className='btn'>
+      <Link to='Home'className='btn btn-outline-danger'>
         <span className="material-symbols-outlined">
           logout
         </span>
       </Link>
-      <button className='btn'>
+      <Link to=''className='btn btn-outline-danger'>
         <span className="material-symbols-outlined">
           library_add
         </span>
-      </button>
-      <Link to='/Galleri'>
-        <span className="material-symbols-outlined">
-view_cozy
-</span>
       </Link>
-      <button className='btn'>
+      <Link to='' className='btn btn-outline-danger'>
+        <span className="material-symbols-outlined">
+          view_cozy</span>
+      </Link>
+      <Link to='' className='btn btn-outline-danger'>
         <span className="material-symbols-outlined">
           favorite
         </span>
-      </button>
-      <button className='btn'>
+      </Link>
+      <Link className='btn btn-outline-danger'>
         <span className="material-symbols-outlined">
           search_check
         </span>
-      </button>
+      </Link>
      
     </div>
   );

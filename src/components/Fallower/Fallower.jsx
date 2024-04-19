@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 
-const Fallower = ({ text, icono }) => {
+const Fallower = ({ text, cantidad }) => {
   const [count, setCount] = useState(0);
 
   const handleClick = () => {
@@ -10,8 +11,8 @@ const Fallower = ({ text, icono }) => {
 
   return (
     <div>
-      <div>{text}: {count}</div>
-      <button className='btn btn-outline-danger' onClick={handleClick}>{icono}</button>
+      <div>{text}: {cantidad}</div>
+      
     </div>
   );
 };

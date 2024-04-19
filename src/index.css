@@ -5,6 +5,14 @@
   font-style: normal;
   
 }
+html{
+    --color1:#fa3c08;
+    --color2:#678d6c;
+    --color3:#fc7d23;
+    --color4:#bd0a41;
+    --color5:#772a53;
+
+}
 
 
 
@@ -46,9 +54,8 @@
     justify-content: center;
     width: 412px;
     height: 800px;
-    background: white;
+    background: none;
     background-size: cover;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
     margin:0;
     padding:0 ;
 }
@@ -59,7 +66,8 @@
   align-items: center;
   justify-content:space-between ;
     width: 412px;
-    background: #f6a700;
+    height: 60px;
+    background:white;
     flex-wrap: wrap; 
     align-self: flex-end;
     margin-top: auto;
@@ -68,22 +76,41 @@
     left: 0;
 }
 
+
 .logoDos{
     width: 35px;
     height: 35px;
 }
 
+
+.previ{
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+
+
 .encabezado{
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-evenly ;
+    justify-content: space-around;
+    margin: 0;
     width: 100%;
     height: 150px;
-    background: #f6a700;
+    color: white;
+    background: var(--color1);
     border-radius: 0px 0px 25px 25px;
 }
+.fallower{
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+}
 .LoginCard{
-    background: #f6a700;
+    background: var(--color1);
     width: 100%;
     border-radius: 30PX 30PX 0PX 0PX;
     height: 60%;
@@ -158,16 +185,16 @@ width: 100%;
     justify-content: center;
 }
 
-.HomeFallowers{
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
-    height: 40%;
-}
 
-.HomeUpFollower{
+.HomeText{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 25%;
+    align-items: center;
+    width: 100%;
+border-radius:  25px 25px 0px 0px;
+     background: var(--color5);
+    color: white;
+    
 }
+
+

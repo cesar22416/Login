@@ -10,7 +10,7 @@ const Welcome = () => {
     
     <div className='LoginCard'>
       <h2>Welcome</h2>
-    <Link className='btn btn-outline-danger'to='/Login'>Entrar</Link>
+    <Link className='btn btn-outline-light'to='/Login'>Entrar</Link>
     <h6>Version2.0</h6>
     </div>
     </div>
