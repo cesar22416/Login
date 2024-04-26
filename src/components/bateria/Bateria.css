@@ -1,0 +1,21 @@
+.battery-icon {
+  width: 30px; /* Ajusta el tamaño del icono */
+  height: 15px; /* Ajusta el tamaño del icono */
+  background-color: #ccc; /* Color del contenedor de la batería */
+  border: none;
+  position: relative;
+  margin: 10px auto;
+  border-radius: 8px;
+}
+
+.battery-level {
+  width: 100%;
+  background-color: rgb(53, 54, 53); /* Color de la parte llena de la batería */
+  position: absolute;
+  bottom: 0;
+  border-radius: 8px;
+}
+
+.Loubateria{
+    display: flex;
+}

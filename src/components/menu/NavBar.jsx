@@ -1,35 +1,32 @@
-
 import { Link } from 'react-router-dom';
-import '../../main';
+import { FaSignOutAlt, FaPlus, FaTh, FaHeart, FaSearch } from 'react-icons/fa'; // Importa los iconos de ReactJS que necesites
+
 export const NavBar = () => {
+  const handleLogout = () => {
+    // Aquí deberías implementar la lógica para cerrar la sesión del usuario
+    // Por ejemplo, podrías llamar a una función que maneje el cierre de sesión
+    console.log('Sesión cerrada');
+  };
+
   return (
-  
     <div className='NavbarContainer'>
-      <Link to='Home'className='btn btn-outline-danger'>
-        <span className="material-symbols-outlined">
-          logout
-        </span>
+      {/* Enlace para cerrar sesión */}
+      <Link to='/' onClick={() => handleLogout()}>
+        <FaSignOutAlt /> {/* Icono de logout */}
       </Link>
-      <Link to=''className='btn btn-outline-danger'>
-        <span className="material-symbols-outlined">
-          library_add
-        </span>
+      {/* Resto de enlaces */}
+      <Link to='/add'>
+        <FaPlus /> {/* Icono de add */}
       </Link>
-      <Link to='' className='btn btn-outline-danger'>
-        <span className="material-symbols-outlined">
-          view_cozy</span>
+      <Link to='/view'>
+        <FaTh /> {/* Icono de view */}
       </Link>
-      <Link to='' className='btn btn-outline-danger'>
-        <span className="material-symbols-outlined">
-          favorite
-        </span>
+      <Link to='/favorites'>
+        <FaHeart /> {/* Icono de favorite */}
       </Link>
-      <Link className='btn btn-outline-danger'>
-        <span className="material-symbols-outlined">
-          search_check
-        </span>
+      <Link to='/search'>
+        <FaSearch /> {/* Icono de search */}
       </Link>
-     
     </div>
   );
 };

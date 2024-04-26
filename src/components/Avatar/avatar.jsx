@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 
-function AvatarComponent() {
-  const [avatarSrc, setAvatarSrc] = useState("/ruta/de/la/imagen.jpg"); // Ruta de la imagen por defecto
+function AvatarComponent({ imageUrl }) {
+  const [avatarSrc, setAvatarSrc] = useState(imageUrl || "/ruta/de/la/imagen.jpg"); // Ruta de la imagen por defecto
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -18,6 +18,13 @@ function AvatarComponent() {
       reader.readAsDataURL(file);
     }
   };
+
+  // Actualiza la imagen del avatar cuando imageUrl cambia
+  useEffect(() => {
+    if (imageUrl) {
+      setAvatarSrc(imageUrl);
+    }
+  }, [imageUrl]);
 
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>

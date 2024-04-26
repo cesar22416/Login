@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from '../src/components/Login';
 import Home from '../src/components/Home';
 import './App.css';
-import appFirebase from './fact';
+import appFirebase from './components/fact';
 import Exchange from './components/exchange/Exchange';
 import Welcome from './components/fondoBase/Welcome';
 import Galleri from './components/Galeri/Galleri'

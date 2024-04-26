@@ -1,0 +1,22 @@
+.caja{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.Statusbar {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  align-items: center;
+  justify-content: flex-start;
+  
+  margin: 0;
+}
+
+.bateria{
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+    
+
+}

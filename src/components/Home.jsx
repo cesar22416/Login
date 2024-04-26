@@ -1,47 +1,52 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import appFirebase from '../fact';
-import { getAuth, onAuthStateChanged} from 'firebase/auth';
-import Perf from '../assets/ImgE.jpg';
+import appFirebase from './fact';
+import { getAuth, onAuthStateChanged, updateProfile } from 'firebase/auth';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Link } from 'react-router-dom';
 import { NavBar } from './menu/NavBar';
-import LogoutButton from '../components/Close'
+import LogoutButton from '../components/Close';
 import Fallower from './Fallower/Fallower';
+import AvatarComponent from './Avatar/avatar';
+
+import StatusBar from './statusbar/StatusBar';
+import Card from './tarjeta/Card';
+import Tempo from './ddd/Tempo';
 const auth = getAuth(appFirebase);
-import AvatarComponent from './Avatar/avatar'
-import  Name  from './name/Name';
+const storage = getStorage(appFirebase);
 
-export const Home = () => {
+const Home = () => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [newImage, setNewImage] = useState(null);
 
-  // Función para obtener el usuario actual al cargar el componente
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // El usuario está autenticado, establecerlo como usuario actual
         setCurrentUser(user);
       } else {
-        // No hay usuario autenticado, establecer currentUser como null
         setCurrentUser(null);
       }
     });
 
-    // Limpiar el efecto cuando el componente se desmonta
     return () => unsubscribe();
   }, []);
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        // Set the image data into state
-        setNewImage(e.target.result);
-        // Save the image data to localStorage
-        localStorage.setItem('userImage', e.target.result);
-      };
-      reader.readAsDataURL(file);
+      try {
+        // Subir la imagen a Firebase Storage
+        const storageRef = ref(storage, `userImages/${auth.currentUser.uid}/${file.name}`);
+        await uploadBytes(storageRef, file);
+        // Obtener la URL de descarga de la imagen
+        const downloadURL = await getDownloadURL(storageRef);
+        // Actualizar el perfil del usuario con la URL de la imagen
+        await updateProfile(auth.currentUser, {
+          displayName: auth.currentUser.displayName,
+          photoURL: downloadURL
+        });
+        console.log('Perfil actualizado con éxito');
+      } catch (error) {
+        console.error('Error al actualizar el perfil:', error);
+      }
     }
   };
 
@@ -51,35 +56,34 @@ export const Home = () => {
 
   return (
     <div className='Fondo'>
+      <StatusBar />  
       <div className='encabezado'>
-    <div className='previ fluido'>
-            <AvatarComponent/>
-            <Name text={"Cesar Montilla"} />
-             <Name Correo={"@cesamontilla"}/>
-            
-    </div>        
-    <div className='fallower fluido'>
-      <Fallower text={"Publicaciones"} cantidad={"15"}/>
-            <Fallower text={"Seguidores"} cantidad={"5"}/>
-            <Fallower text={"Seguidos"} cantidad={"2"} />
-    </div>
-    </div>        
-     
-        <div className="HomeUpFollower">
-          <h5 className="card-title">Bienvenido {currentUser ? currentUser.email : 'Invitado'}</h5>
-          <Link className='btn btn-outline-danger' to='/Exchange'>Buscar amigo</Link>
+        <div className='previ fluido'>
+          <Tempo/>
+          <p>{currentUser ? currentUser.email : 'Invitado'}</p>
+                  </div>        
+        <div className='fallower fluido'>
+          <Fallower text={"Publicaciones"} cantidad={"15"} />
+          <Fallower text={"Seguidores"} cantidad={"5"} />
+          <Fallower text={"Seguidos"} cantidad={"2"} />
         </div>
+      </div>        
 
-        <div className='HomeText'>
-          <p className="card-text">This is a wider card with supporting text below as <br/> natural
-            lead-in to additional content. <br/>This content is a little bit longer.</p>
-          <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
-          </div>
-          
-          
-        
-        <NavBar/>
+      <div className="HomeUpFollower">
+        <h5 className="card-title">Bienvenido {currentUser ? currentUser.email : 'Invitado'}</h5>
+        <Link className='btn btn-outline-danger' to='/Exchange'>Buscar amigo</Link>
+        {currentUser && <LogoutButton />} {/* Renderiza el botón solo si hay un usuario autenticado */}
       </div>
+
+    
+      
+     
+      
+      <NavBar />
+
+      {/* Input oculto para la selección de archivos */}
+      <input type="file" id="fileInput" onChange={handleFileChange} style={{ display: 'none' }} />
+    </div>
   );
 };
 

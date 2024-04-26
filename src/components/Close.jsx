@@ -2,7 +2,7 @@
 import React from 'react';
 import { signOut } from 'firebase/auth';
 import { getAuth } from 'firebase/auth';
-import appFirebase from '../fact';
+import appFirebase from './fact';
 
 const auth = getAuth(appFirebase);
 
